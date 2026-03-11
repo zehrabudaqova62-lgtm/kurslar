@@ -1,0 +1,50 @@
+from database import get_connection
+
+def register_user(username, password):
+    conn=get_connection()
+    cursor=conn.cursor()
+    try:
+        cursor.execute(
+            "INSERT INTO users (username, password) VALUES (:1, :2)",
+            (username, password)
+        )
+        conn.commit()
+        return True
+    except:
+        return False
+    finally:
+        cursor.close()
+        conn.close()
+
+def add_course(name, description):
+    conn=get_connection()
+    cursor=conn.cursor()
+    try:
+        cursor.execute(
+        "INSERT INTO courses (name, description) VALUES (:1, :2)",
+        (name, description)
+        )
+        conn.commit()
+        return True
+    except:
+        return False
+    finally:
+        cursor.close()
+        conn.close()
+
+
+def enroll_user_in_course(user_id, course_id):
+    conn=get_connection()
+    cursor=conn.cursor()
+    try:
+        cursor.execute(
+            "INSERT INTO users (user_id, course_id) VALUES (:1, :2)",
+            (user_id, course_id)
+        )
+        conn.commit()
+        return True
+    except:
+        return False
+    finally:
+        cursor.close()
+        conn.close()
